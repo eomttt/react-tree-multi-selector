@@ -9,7 +9,7 @@ module.exports = {
     alias: { 'react-dom': '@hot-loader/react-dom'  }
   },
   entry: {
-    app: ['./index']
+    app: ['./src/App']
   }, // 입력
   module: { // Loaders
     rules: [{

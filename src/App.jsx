@@ -1,24 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import MultiSelector from './components/MultiSelector';
 import MultiSelectorInput from './components/MultiSelectorInput';
-import TestMultiCategories, { initialSelectedIds, exceptionIds, notSelectionIds } from './dummy/MultiSelectorItem';
+import dummyCategories, { dummyInitial, dummyExceptions, dummyNotSelections } from './dummy/MultiSelectorItem';
 
-const App = () => {
+const App = ({ 
+  children,
+  categories = dummyCategories,
+  initialIds = dummyInitial,
+  exceptionIds = dummyExceptions,
+  notSelectionIds = dummyNotSelections,
+  selectedCategoriesCallback,
+}) => {
   const handleSelectedCategories = (selectedIdListOnlyParent, selectedIdList) => {
-    console.log('selectedIdListOnlyParent', selectedIdListOnlyParent);
-    console.log('selectedIdList', selectedIdList);
+    console.log('[MULTI_SELECT]selectedIdListOnlyParent', selectedIdListOnlyParent);
+    console.log('[MULTI_SELECT]selectedIdList', selectedIdList);
   }
 
   return (
     <MultiSelector
-      categories={TestMultiCategories}
-      initialSelectedIds={initialSelectedIds}
+      categories={categories}
+      initialSelectedIds={initialIds}
       exceptionIds={exceptionIds}
       notSelectionIds={notSelectionIds}
-      handleSelectedCategories={handleSelectedCategories}
+      handleSelectedCategories={selectedCategoriesCallback ? selectedCategoriesCallback : handleSelectedCategories}
     >
-      <MultiSelectorInput />
+      {children ? children : <MultiSelectorInput />}
     </MultiSelector>
   )
 };

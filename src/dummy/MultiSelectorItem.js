@@ -1,4 +1,4 @@
-const categories = [
+const dummyCategories = [
   {
     id: 1,
     title: '1',
@@ -61,8 +61,8 @@ const categories = [
   }
 ]
 
-export const initialSelectedIds = [];
-export const exceptionIds = [];
-export const notSelectionIds = [];
+export const dummyInitial = [];
+export const dummyExceptions = [];
+export const dummyNotSelections = [];
 
-export default categories;
+export default dummyCategories;
