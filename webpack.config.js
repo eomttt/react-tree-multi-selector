@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  mode: 'development', // 배포시: production
+  mode: 'production', // 배포시: production
   devtool: 'eval', // (빠르게 하겠다) 배포시: hidden-source-map
   resolve: {
     extensions: ['.js', '.jsx'], // .js 또는 .jsx 파일을 찾는다 (entry 안에 app에 있는 파일에 확장자를 붙여서 찾는다)
