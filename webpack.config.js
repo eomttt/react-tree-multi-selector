@@ -5,7 +5,8 @@ module.exports = {
   mode: 'development', // 배포시: production
   devtool: 'eval', // (빠르게 하겠다) 배포시: hidden-source-map
   resolve: {
-    extensions: ['.js', '.jsx'] // .js 또는 .jsx 파일을 찾는다 (entry 안에 app에 있는 파일에 확장자를 붙여서 찾는다)
+    extensions: ['.js', '.jsx'], // .js 또는 .jsx 파일을 찾는다 (entry 안에 app에 있는 파일에 확장자를 붙여서 찾는다)
+    alias: { 'react-dom': '@hot-loader/react-dom'  }
   },
   entry: {
     app: ['./index']
@@ -21,7 +22,7 @@ module.exports = {
         plugins: [
             '@babel/plugin-proposal-class-properties',
             'react-hot-loader/babel' // webpack-dev-server hot 사용시!!!
-          ] // Error fix
+        ] // Error fix
       },
     }]
   }, // entry에 파일을 읽고 거기에 module를 적용한 후 output에 뺸다.
