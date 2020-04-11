@@ -34,8 +34,8 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.join(__dirname, 'build'), // 현재 폴더 루트(__dirname) 에 'build' 폴더 생성
-
-    publicPath: '/build/'
+    publicPath: '/build/',
+    libraryTarget: "commonjs2"
   }, // 출력
 
 };
