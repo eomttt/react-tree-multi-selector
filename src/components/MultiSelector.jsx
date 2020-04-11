@@ -9,25 +9,25 @@ const MultiSelector = ({ children,
 }) => {
   const [selectedCategories, setSelectedCategories] = useState(null);
 
-  useEffect(() => {
-    const selectedCategory = {};
+  // useEffect(() => {
+  //   const selectedCategory = {};
 
-    if (initialSelectedIds.length > 0) {
-      categories.forEach((category) => {
-        selectedCategory[category.id] = {};
+  //   if (initialSelectedIds.length > 0) {
+  //     categories.forEach((category) => {
+  //       selectedCategory[category.id] = {};
 
-        const isIncludeSelectedId = initialSelectedIds.includes(category.id);
-        const selectedSubCategory = getSubSelectedSubCategory(category, selectedCategory[category.id], isIncludeSelectedId);
+  //       const isIncludeSelectedId = initialSelectedIds.includes(category.id);
+  //       const selectedSubCategory = getSubSelectedSubCategory(category, selectedCategory[category.id], isIncludeSelectedId);
 
-        selectedCategory[category.id] = {
-          [IS_SELECTED_KEY]: isIncludeSelectedId,
-          ...selectedSubCategory,
-        };
-      });
-    }
+  //       selectedCategory[category.id] = {
+  //         [IS_SELECTED_KEY]: isIncludeSelectedId,
+  //         ...selectedSubCategory,
+  //       };
+  //     });
+  //   }
 
-    setSelectedCategories(selectedCategory);
-  }, [initialSelectedIds]);
+  //   // setSelectedCategories(selectedCategory);
+  // }, [initialSelectedIds]);
 
   const getSubSelectedSubCategory = (
       category,
@@ -77,13 +77,13 @@ const MultiSelector = ({ children,
     const selectedIdListOnlyParent = getSelectedCategoryIdsOnlyParent(categoryList, []);
     const selectedIdList = getSelectedCategoryIds(categoryList, []);
     handleSelectedCategories(selectedIdListOnlyParent, selectedIdList);
-    setSelectedCategories(categoryList);
+    // setSelectedCategories(categoryList);
   };
 
   return (
     <MultiSelectorItem
       categories={categories}
-      selectedCategories={selectedCategories}
+      selectedCategories={[]}
       exceptionIds={exceptionIds}
       notSelectionIds={notSelectionIds}
       onChange={handleChange}

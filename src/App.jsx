@@ -5,7 +5,6 @@ import MultiSelectorInput from './components/MultiSelectorInput';
 import dummyCategories, { dummyInitial, dummyExceptions, dummyNotSelections } from './dummy/MultiSelectorItem';
 
 const App = ({ 
-  children,
   categories = dummyCategories,
   initialIds = dummyInitial,
   exceptionIds = dummyExceptions,
@@ -15,7 +14,10 @@ const App = ({
   const handleSelectedCategories = (selectedIdListOnlyParent, selectedIdList) => {
     console.log('[MULTI_SELECT]selectedIdListOnlyParent', selectedIdListOnlyParent);
     console.log('[MULTI_SELECT]selectedIdList', selectedIdList);
+    selectedCategoriesCallback && selectedCategoriesCallback(selectedIdListOnlyParent, selectedIdList)
   }
+
+  console.log(categories, initialIds, exceptionIds, notSelectionIds)
 
   return (
     <MultiSelector
@@ -23,9 +25,9 @@ const App = ({
       initialSelectedIds={initialIds}
       exceptionIds={exceptionIds}
       notSelectionIds={notSelectionIds}
-      handleSelectedCategories={selectedCategoriesCallback ? selectedCategoriesCallback : handleSelectedCategories}
+      handleSelectedCategories={handleSelectedCategories}
     >
-      {children ? children : <MultiSelectorInput />}
+      <MultiSelectorInput />
     </MultiSelector>
   )
 };
