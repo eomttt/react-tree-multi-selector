@@ -32,12 +32,10 @@ module.exports = {
     }) // Loader(module) 의 options에 다 {debug: true} 를 넣어줘라
   ], // webpack에서 기본적으로 합쳐주는애(module, rules 등) 말고 추가적으로 뭔가 더 하고 싶은것들
   output: {
-    filename: 'app.js',
-    path: path.join(__dirname, 'dist'), // 현재 폴더 루트(__dirname) 에 'dist' 폴더 생성
+    filename: 'index.js',
+    path: path.join(__dirname, 'build'), // 현재 폴더 루트(__dirname) 에 'build' 폴더 생성
 
-    // webpack-dev-server 사용 시 <script src="./dist/app.js"></script> /dist 경로 추가
-    // 추가 없을 시에 html 에서 <script src="./dist/app.js"></script> 가 아닌 <script src="./app.js"></script> 로 해줘야 동작
-    publicPath: '/dist/'
+    publicPath: '/build/'
   }, // 출력
 
 };
