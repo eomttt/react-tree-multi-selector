@@ -1,0 +1,15 @@
+.multi-selector-container {
+  margin: 25px;
+}
+
+.multi-selector-category-item {
+  margin: 10px
+}
+
+.multi-selector-subcategory-container {
+  padding-left: 10px;
+}
+
+.onclick-cursor-pointer {
+  cursor: pointer;
+}

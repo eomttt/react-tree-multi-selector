@@ -10,8 +10,6 @@ const MultiSelectorItem = ({
   notSelectionIds,
   onChange,
 }) => {
-  console.log('onChange', onChange);
-
   const handleSubCategoryListChange = (categoryId, selectedSubCategoryInfo) => {
     let isSelectedCategory = true;
     categories.some((category) => {

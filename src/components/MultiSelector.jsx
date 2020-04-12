@@ -11,14 +11,6 @@ class MultiSelector extends React.Component {
     selectedCategories: [],
   };
 
-  componentDidMount() {
-    console.log("Component did mount");
-    this.setState({
-      didMount: true,
-    });
-  }
-
-
   shouldComponentUpdate(nextProps, nextState) {
     const { initialSelectedIds, categories } = nextProps;
     const selectedCategory = {};
@@ -89,7 +81,6 @@ class MultiSelector extends React.Component {
   };
 
   handleChange = (categoryList) => {
-    console.log("AAAA", categoryList);
     const selectedIdListOnlyParent = this.getSelectedCategoryIdsOnlyParent(categoryList, []);
     const selectedIdList = this.getSelectedCategoryIds(categoryList, []);
     this.props.handleSelectedCategories(selectedIdListOnlyParent, selectedIdList);
@@ -100,7 +91,6 @@ class MultiSelector extends React.Component {
 
   render() {
     const {
-      didMount,
       selectedCategories,
     } = this.state;
     const {
@@ -109,9 +99,7 @@ class MultiSelector extends React.Component {
     } = this.props;
 
     return (
-      <>
-      {
-        didMount &&
+      <div className="multi-selector-container">
         <MultiSelectorItem
           categories={categories}
           selectedCategories={selectedCategories}
@@ -120,10 +108,8 @@ class MultiSelector extends React.Component {
           onChange={this.handleChange}
         >
           {children}
-        </MultiSelectorItem> 
-      }
-      </>
-
+        </MultiSelectorItem>
+      </div>
     )
   }
 }

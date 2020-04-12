@@ -15,19 +15,25 @@ module.exports = {
     app: ['./src/App']
   }, // 입력
   module: { // Loaders
-    rules: [{
-      test: /\.jsx?$/, // .js 파일과 .jsx 파일에 rules (loader)를 적용
-      loader: 'babel-loader', // babel 적용: 최신문법을 옛날 브라우저에서도 돌아갈 수 있게 변경하겠다.
-      options: {
-        presets: [
-          '@babel/preset-react'
-        ],
-        plugins: [
-            '@babel/plugin-proposal-class-properties',
-            'react-hot-loader/babel' // webpack-dev-server hot 사용시!!!
-        ] // Error fix
+    rules: [
+      {
+        test: /\.jsx?$/, // .js 파일과 .jsx 파일에 rules (loader)를 적용
+        loader: 'babel-loader', // babel 적용: 최신문법을 옛날 브라우저에서도 돌아갈 수 있게 변경하겠다.
+        options: {
+          presets: [
+            '@babel/preset-react'
+          ],
+          plugins: [
+              '@babel/plugin-proposal-class-properties',
+              'react-hot-loader/babel' // webpack-dev-server hot 사용시!!!
+          ] // Error fix
+        },
       },
-    }]
+      {
+        test: /\.css$/,
+        loader: "style-loader!css-loader"
+      }
+    ]
   }, // entry에 파일을 읽고 거기에 module를 적용한 후 output에 뺸다.
   plugins: [
     new webpack.LoaderOptionsPlugin({
