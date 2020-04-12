@@ -1,59 +1,74 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 
 import MultiSelectorItem, { IS_SELECTED_KEY } from './MultiSelectorItem';
 
-const MultiSelector = ({ children,
-  categories, initialSelectedIds,
-  notSelectionIds, exceptionIds,
-  handleSelectedCategories,
-}) => {
-  const [selectedCategories, setSelectedCategories] = useState(null);
+class MultiSelector extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  // useEffect(() => {
-  //   const selectedCategory = {};
+  state = {
+    selectedCategories: [],
+  };
 
-  //   if (initialSelectedIds.length > 0) {
-  //     categories.forEach((category) => {
-  //       selectedCategory[category.id] = {};
+  componentDidMount() {
+    console.log("Component did mount");
+    this.setState({
+      didMount: true,
+    });
+  }
 
-  //       const isIncludeSelectedId = initialSelectedIds.includes(category.id);
-  //       const selectedSubCategory = getSubSelectedSubCategory(category, selectedCategory[category.id], isIncludeSelectedId);
 
-  //       selectedCategory[category.id] = {
-  //         [IS_SELECTED_KEY]: isIncludeSelectedId,
-  //         ...selectedSubCategory,
-  //       };
-  //     });
-  //   }
+  shouldComponentUpdate(nextProps, nextState) {
+    const { initialSelectedIds, categories } = nextProps;
+    const selectedCategory = {};
 
-  //   // setSelectedCategories(selectedCategory);
-  // }, [initialSelectedIds]);
+    if (initialSelectedIds.length > 0) {
+      categories.forEach((category) => {
+        selectedCategory[category.id] = {};
 
-  const getSubSelectedSubCategory = (
-      category,
-      selectedCategoryInfo,
-      isSelectedByParent,
+        const isIncludeSelectedId = initialSelectedIds.includes(category.id);
+        const selectedSubCategory = this.getSubSelectedSubCategory(category, selectedCategory[category.id], isIncludeSelectedId);
+
+        selectedCategory[category.id] = {
+          [IS_SELECTED_KEY]: isIncludeSelectedId,
+          ...selectedSubCategory,
+        };
+      });
+      this.setState({
+        selectedCategories, 
+      })
+    }
+
+    return true;
+  }
+
+  getSubSelectedSubCategory = (
+    category,
+    selectedCategoryInfo,
+    isSelectedByParent,
   ) => {
     if (category.subCategory) {
       category.subCategory.forEach((subCategory) => {
-        const isSelected = isSelectedByParent || initialSelectedIds.includes(subCategory.id);
+        const isSelected = isSelectedByParent || this.props.initialSelectedIds.includes(subCategory.id);
 
         selectedCategoryInfo[subCategory.id] = {
           [IS_SELECTED_KEY]: isSelected,
         };
-        return getSubSelectedSubCategory(subCategory, selectedCategoryInfo[subCategory.id], isSelected);
+        return this.getSubSelectedSubCategory(subCategory, selectedCategoryInfo[subCategory.id], isSelected);
       });
     }
     return selectedCategoryInfo;
   };
 
-  const getSelectedCategoryIdsOnlyParent = (categoryList, selectedIdList) => {
+
+  getSelectedCategoryIdsOnlyParent = (categoryList, selectedIdList) => {
     if (categoryList) {
       Object.keys(categoryList).forEach((categoryKey) => {
-        if (categoryList[categoryKey].isSelected && !notSelectionIds.includes(+categoryKey)) {
+        if (categoryList[categoryKey].isSelected && !this.props.notSelectionIds.includes(+categoryKey)) {
           selectedIdList.push(+categoryKey);
         } else {
-          return getSelectedCategoryIdsOnlyParent(categoryList[categoryKey], selectedIdList);
+          return this.getSelectedCategoryIdsOnlyParent(categoryList[categoryKey], selectedIdList);
         }
       });
     }
@@ -61,36 +76,56 @@ const MultiSelector = ({ children,
     return selectedIdList;
   };
 
-  const getSelectedCategoryIds = (categoryList, selectedIdList) => {
+  getSelectedCategoryIds = (categoryList, selectedIdList) => {
     if (categoryList) {
       Object.keys(categoryList).forEach((categoryKey) => {
-        if (categoryList[categoryKey].isSelected && !notSelectionIds.includes(+categoryKey)) {
+        if (categoryList[categoryKey].isSelected && !this.props.notSelectionIds.includes(+categoryKey)) {
           selectedIdList.push(+categoryKey);
         }
-        return getSelectedCategoryIds(categoryList[categoryKey], selectedIdList);
+        return this.getSelectedCategoryIds(categoryList[categoryKey], selectedIdList);
       });
     }
     return selectedIdList;
   };
 
-  const handleChange = (categoryList) => {
-    const selectedIdListOnlyParent = getSelectedCategoryIdsOnlyParent(categoryList, []);
-    const selectedIdList = getSelectedCategoryIds(categoryList, []);
-    handleSelectedCategories(selectedIdListOnlyParent, selectedIdList);
-    // setSelectedCategories(categoryList);
+  handleChange = (categoryList) => {
+    console.log("AAAA", categoryList);
+    const selectedIdListOnlyParent = this.getSelectedCategoryIdsOnlyParent(categoryList, []);
+    const selectedIdList = this.getSelectedCategoryIds(categoryList, []);
+    this.props.handleSelectedCategories(selectedIdListOnlyParent, selectedIdList);
+    this.setState({
+      selectedCategories: categoryList,
+    })
   };
 
-  return (
-    <MultiSelectorItem
-      categories={categories}
-      selectedCategories={[]}
-      exceptionIds={exceptionIds}
-      notSelectionIds={notSelectionIds}
-      onChange={handleChange}
-    >
-      {children}
-    </MultiSelectorItem>
-  )
-};
+  render() {
+    const {
+      didMount,
+      selectedCategories,
+    } = this.state;
+    const {
+      children,
+      categories, exceptionIds, notSelectionIds,
+    } = this.props;
+
+    return (
+      <>
+      {
+        didMount &&
+        <MultiSelectorItem
+          categories={categories}
+          selectedCategories={selectedCategories}
+          exceptionIds={exceptionIds}
+          notSelectionIds={notSelectionIds}
+          onChange={this.handleChange}
+        >
+          {children}
+        </MultiSelectorItem> 
+      }
+      </>
+
+    )
+  }
+}
 
 export default memo(MultiSelector);

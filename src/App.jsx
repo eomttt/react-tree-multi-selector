@@ -17,7 +17,7 @@ const App = ({
     selectedCategoriesCallback && selectedCategoriesCallback(selectedIdListOnlyParent, selectedIdList)
   }
 
-  console.log(categories, initialIds, exceptionIds, notSelectionIds)
+  console.log(categories, initialIds, exceptionIds, notSelectionIds, handleSelectedCategories)
 
   return (
     <MultiSelector
