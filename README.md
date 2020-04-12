@@ -103,8 +103,12 @@ export const dummySelectedCategoryCallback = (selectedIdListOnlyParent, selected
 }
 ```
 
+## Demo
+![](https://hyuntaeeom-personal.s3.ap-northeast-2.amazonaws.com/README/multi-select-before.png)
+![](https://hyuntaeeom-personal.s3.ap-northeast-2.amazonaws.com/README/multi-select.png)
+
 ## Types
-Category
+### Category
 - id: number ***(unique key)***
 - title: string
 - subCategory: Category[]
