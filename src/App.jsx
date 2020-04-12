@@ -2,22 +2,15 @@ import React from 'react';
 
 import MultiSelector from './components/MultiSelector';
 import MultiSelectorInput from './components/MultiSelectorInput';
-import {
-  dummyCategories,
-  dummyInitial,
-  dummyExceptions,
-  dummyNotSelections,
-  dummySelectedCategoryCallback,
-} from './dummy/MultiSelectorItem';
 
 import './App.css';
 
 const App = ({ 
-  categories = dummyCategories,
-  initialIds = dummyInitial,
-  exceptionIds = dummyExceptions,
-  notSelectionIds = dummyNotSelections,
-  handleSelectedCategories = dummySelectedCategoryCallback,
+  categories = [],
+  initialIds = [],
+  exceptionIds = [],
+  notSelectionIds = [],
+  handleSelectedCategories,
 }) => {
   return (
     <MultiSelector

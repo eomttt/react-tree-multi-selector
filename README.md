@@ -5,7 +5,7 @@
 
 ## Usage
 ```js
-import MultiSelector from 'react-tree-multi-selector'
+import ReactTreeMultiSelector from 'react-tree-multi-selector'
 import {
   dummyCategories,
   dummyInitial,
@@ -16,7 +16,7 @@ import {
 
 const App = () => {
   return (
-    <MultiSelector
+    <ReactTreeMultiSelector
       categories={dummyCategories}
       initialSelectedIds={dummyInitial}
       exceptionIds={dummyExceptions}
@@ -104,7 +104,9 @@ export const dummySelectedCategoryCallback = (selectedIdListOnlyParent, selected
 ```
 
 ## Demo
+Before select
 ![](https://hyuntaeeom-personal.s3.ap-northeast-2.amazonaws.com/README/multi-select-before.png)
+After select
 ![](https://hyuntaeeom-personal.s3.ap-northeast-2.amazonaws.com/README/multi-select.png)
 
 ## Types
