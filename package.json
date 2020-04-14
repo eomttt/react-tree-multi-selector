@@ -1,6 +1,6 @@
 {
   "name": "react-tree-multi-selector",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "main": "build/index.js",
   "scripts": {
@@ -33,10 +33,14 @@
     "webpack-dev-server": "^3.10.3"
   },
   "keywords": [
+    "react",
     "multi select",
     "tree select",
     "React multi select",
-    "react tree select"
+    "react tree select",
+    "react-tree-multi-selector",
+    "tree-selector",
+    "react-tree-selector"
   ],
   "repository": {
     "type": "git",
