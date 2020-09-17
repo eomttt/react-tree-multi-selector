@@ -1,6 +1,6 @@
 {
   "name": "react-tree-multi-selector",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -41,5 +41,5 @@
     "type": "git",
     "url": "git+https://github.com/eomttt/react-tree-multi-selector"
   },
-  "homepage": "https://eomttt.github.io/demo-module/tree-multi-selector"
+  "homepage": "https://eomttt.github.io/demo-module/#/tree-multi-selector"
 }

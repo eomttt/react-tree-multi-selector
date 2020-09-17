@@ -103,7 +103,7 @@ export const dummySelectedCategoryCallback = (selectedIdListOnlyParent, selected
 }
 ```
 
-## [Demo](https://eomttt.github.io/demo-module/tree-multi-selector)
+## [Demo](https://eomttt.github.io/demo-module/#/tree-multi-selector)
 
 [Demo code](https://github.com/eomttt/demo-module)
 
