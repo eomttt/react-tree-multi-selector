@@ -1,11 +1,10 @@
 {
   "name": "react-tree-multi-selector",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack-dev-server --hot",
+    "build": "cross-env NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "eomttt",
