@@ -103,9 +103,9 @@ export const dummySelectedCategoryCallback = (selectedIdListOnlyParent, selected
 }
 ```
 
-## [Demo](https://eomttt.github.io/demo-react-tree-multi-selector/)
+## [Demo](https://eomttt.github.io/demo-module/tree-multi-selector)
 
-[Demo code](https://github.com/eomttt/demo-react-tree-multi-selector)
+[Demo code](https://github.com/eomttt/demo-module)
 
 Before select
 ![](https://hyuntaeeom-personal.s3.ap-northeast-2.amazonaws.com/README/multi-select-before.png)
